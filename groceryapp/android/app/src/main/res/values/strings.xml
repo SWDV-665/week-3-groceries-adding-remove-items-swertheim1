@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">groceryapp</string>
+    <string name="title_activity_main">groceryapp</string>
+    <string name="package_name">ionic.groceryapp</string>
+    <string name="custom_url_scheme">ionic.groceryapp</string>
+</resources>
