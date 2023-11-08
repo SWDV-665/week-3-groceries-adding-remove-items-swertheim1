@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Grocery
+      {{ title }}
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,83 +15,35 @@
 
   <ion-list>
       
-    <ion-item-sliding>
-      <ion-item-options side="start">
-        <ion-item-option color="success">Archive</ion-item-option>
-      </ion-item-options>
-  
-      <ion-item>
-        <ion-label>1 gallon of milk</ion-label>
-      </ion-item>
-  
-      <ion-item-options side="end">
-        <ion-item-option color="Warning">Finished</ion-item-option>
-        <ion-item-option color="danger">Delete</ion-item-option>
-      </ion-item-options>
-      </ion-item-sliding>
-
-      <ion-item-sliding>
-        <ion-item-options side="start">
-          <ion-item-option color="success">Archive</ion-item-option>
-        </ion-item-options>
-    
+    <ion-item-sliding 
+      *ngFor="let item of items">
         <ion-item>
-          <ion-label>1 loaf of bread</ion-label>
+          <ion-label>{{ item.name }}, {{ item.quantity}}</ion-label>
         </ion-item>
-    
-        <ion-item-options side="end">
-          <ion-item-option color="Warning">Finished</ion-item-option>
-          <ion-item-option color="danger">Delete</ion-item-option>
+        <ion-item-options  side="end">
+          <ion-item-option id="open-toast-done" type="button" color="Warning" (click)="removeItem(item)">Done</ion-item-option>
+          <ion-toast trigger="open-toast-done" message="Item  removed." [duration]="3000"></ion-toast>
         </ion-item-options>
-        </ion-item-sliding>
-  
-        <ion-item-sliding>
-          <ion-item-options side="start">
-            <ion-item-option color="success">Archive</ion-item-option>
-          </ion-item-options>
-      
-          <ion-item>
-            <ion-label>2 lbs of ground beef</ion-label>
-          </ion-item>
-      
-          <ion-item-options side="end">
-            <ion-item-option color="Warning">Finished</ion-item-option>
-            <ion-item-option color="danger">Delete</ion-item-option>
-          </ion-item-options>
-          </ion-item-sliding>
-
-
-          <ion-item-sliding>
-            <ion-item-options side="start">
-              <ion-item-option color="success">Archive</ion-item-option>
-            </ion-item-options>
-        
-            <ion-item>
-              <ion-label>2 lbs of chicken</ion-label>
-            </ion-item>
-        
-            <ion-item-options side="end">
-              <ion-item-option color="Warning">Finished</ion-item-option>
-              <ion-item-option color="danger">Delete</ion-item-option>
-            </ion-item-options>
-            </ion-item-sliding>
-
-            <ion-item-sliding>
-              <ion-item-options side="start">
-                <ion-item-option color="success">Archive</ion-item-option>
-              </ion-item-options>
-          
-              <ion-item>
-                <ion-label>4 cucumbers and 2 tomatoes</ion-label>
-              </ion-item>
-          
-              <ion-item-options side="end">
-                <ion-item-option color="Warning">Finished</ion-item-option>
-                <ion-item-option color="danger">Delete</ion-item-option>
-              </ion-item-options>
-              </ion-item-sliding>
-
+      </ion-item-sliding>
   </ion-list>
  
+
+  <!-- <ion-fab>
+  <ion-fab-button>
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab> -->
+
+<ion-fab slot="fixed" vertical="bottom" horizontal="end">
+  <ion-fab-button id="present-alert">
+    <ion-icon name="add" aria-hidden="true"></ion-icon>
+  </ion-fab-button>
+  <ion-alert
+    trigger="present-alert"
+    header="Add item to list"
+    [buttons]="alertButtons"
+    [inputs]="alertInputs">
+  </ion-alert>
+</ion-fab>
 
 </ion-content>
