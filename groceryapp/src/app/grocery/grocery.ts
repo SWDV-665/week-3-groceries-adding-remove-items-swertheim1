@@ -89,8 +89,6 @@ export class Grocery {
         name: 'Quantity',
         placeholder: 'Enter Quantity', 
       },
-
-     
     ];
   
 }
