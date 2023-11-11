@@ -43,7 +43,7 @@ export class Grocery {
   
   // constructor
   constructor(private toastController: ToastController, private alertController: AlertController) {
-    addIcons({ add, heart });  
+    addIcons({ add });  
   }
 
   // function that logs a remove-item msg to the console when clicked
@@ -75,15 +75,11 @@ export class Grocery {
         handler: (item: any) => {
           console.log('Save Clicked', item)
           this.items.push(item);
-        
       }
-
-          
     }]
 
     public alertInputs = 
     [
-      
       {
         name: 'name',
         placeholder: 'Enter item name',
