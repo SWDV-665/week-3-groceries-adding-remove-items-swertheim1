@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonFabButton, AlertController } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
-import { IonAvatar, IonItem, IonLabel, IonList, IonReorderGroup, IonItemSliding, IonItemOption, 
-         IonItemOptions, IonGrid, IonRow, IonCol, IonButton, IonToast, IonFab, IonIcon, IonAlert} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonFabButton, AlertController, ToastController, IonAvatar, IonItem, IonLabel, IonList, 
+          IonReorderGroup, IonItemSliding, IonItemOption, IonItemOptions, IonGrid, IonRow, IonCol, IonButton, IonToast, IonFab, IonIcon, 
+          IonAlert} from '@ionic/angular/standalone';
 import { NgFor } from '@angular/common';
-import { ToastController } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import { add, heart } from 'ionicons/icons';
 
@@ -40,6 +39,7 @@ export class Grocery {
       quantity: 1
     }
   ]
+  isOpen!: boolean;
   
   // constructor
   constructor(private toastController: ToastController, private alertController: AlertController) {
@@ -47,25 +47,23 @@ export class Grocery {
   }
 
   // function that logs a remove-item msg to the console when clicked
-  async removeItem(item: any) {
-    console.log("removing item - ", item);
+  async removeItem(item: any, index: number) {
+    console.log("removing item - ", item.name, "index: ", index);
 
     // toast is supposed to popup when the button is clicked.   
     const toast = await this.toastController.create({ 
-      message: 'removing item - ' + item.name,
+      message: 'Removing item number  ' +  Number(index + 1),
       duration: 3000
     });
 
     await toast.present();  
-  }
+    this.items.splice(index, 1);
 
-  // function to add items
-  addItem() {
-    console.log('Adding item');
+  }
   
-  }
-
-    public alertButtons = [
+    public alertButtons = 
+    [
+      
       {
         text: 'Cancel',
         handler: (data: any) => {
@@ -77,18 +75,35 @@ export class Grocery {
         handler: (item: any) => {
           console.log('Save Clicked', item)
           this.items.push(item);
+        
       }
+
+          
     }]
 
-    public alertInputs = [
+    public alertInputs = 
+    [
+      
       {
-        name: 'Item',
-        placeholder: 'Enter Item',
+        name: 'name',
+        placeholder: 'Enter item name',
       },
       {
-        name: 'Quantity',
-        placeholder: 'Enter Quantity', 
+        name: 'quantity',
+        placeholder: 'Enter quantity', 
       },
+
     ];
-  
+
+    async _alert() {
+     const alert = await this.alertController.create({
+        header: 'Alert Header',
+        subHeader: 'Alert SubHeader',
+        message: 'here is my alert'
+
+      });
+      await alert.present();
+
+    }
+
 }
