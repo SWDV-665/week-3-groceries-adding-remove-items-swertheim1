@@ -1,0 +1,12 @@
+https://github.com/SWDV-665/week-3-groceries-app-skeleton-swertheim1
+
+
+    1. How many hours do you estimate you used completing this assignment?
+        about 20
+
+    2. What was easiest for you when completing this assignment?
+        understanding the concepts were the easiest
+
+    3. What was the most difficult challenge you experienced when completing this assignment?
+        Applying the outdated videos to the the latest versions of Ionic Framework. 
+        While that was difficult it was a good learning experience.  
